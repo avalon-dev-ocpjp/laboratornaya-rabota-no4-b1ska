@@ -22,7 +22,7 @@ final class FileReaderImpl implements FileReader {
         stream = new RandomAccessFile(file, "r");
         IntSummaryStatistics statistics = Stream
                 .generate(this::readLine)
-                .takeWhile(Objects::nonNull)
+                .limit(500)
                 .mapToInt(String::length)
                 .summaryStatistics();
         linesCount = (int) statistics.getCount();
